@@ -1,0 +1,10 @@
+#encoding:utf
+import urllib,urllib2
+import re
+if __name__ == "__main__":
+    url = "http://qt.gtimg.cn/q=sz000858"
+    response = urllib2.urlopen(url) 
+    html = response.read()
+    lv = html.split("=")[1].replace('"','').split('~')
+    for i in range(len(lv)):
+        print i,lv[i]
