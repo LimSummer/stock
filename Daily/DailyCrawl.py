@@ -60,7 +60,7 @@ if __name__ == "__main__":
     for key in stock_all.dic_stock:
         tempList = []
         print len(stock_all.dic_stock[key])
-        continue
+        
         for l1 in stock_all.dic_stock[key]:
             tempList.append(l1)
             if(len(tempList) == 50):
