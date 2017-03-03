@@ -3,7 +3,7 @@ import sqlite3,sys,os,time
 sys.path.append("..")
 import traceback
 from log import logging
-
+dbfile = "stocka_f.db"
 def func_filter1(stocklist):
     for stock in stocklist:
         pass
@@ -15,7 +15,7 @@ query1 = 'select STOCK_ID,STOCK_NAME,DATE,PRICE,CHANGE,CHANGE_PERCENTAGE,DEAL_CN
 query2 = 'select STOCK_ID,STOCK_NAME,SUM(CHANGE) AS TOTALCHANGE from STOCK_RECORD GROUP BY STOCK_ID ORDER BY TOTALCHANGE DESC'
 query3 = "select STOCK_ID,STOCK_NAME,PRICE_YESTODAY from STOCK_RECORD where DATE='2017-03-01'"
 def getdata(sql):
-    dbfile = os.path.join(os.path.dirname(os.getcwd()),'stocka_f.db')
+    dbfile = os.path.join(os.path.dirname(os.getcwd()),dbfile)
     conn = sqlite3.connect(dbfile)
     valuelist = []
     try:
