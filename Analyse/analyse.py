@@ -30,8 +30,11 @@ def getdata(sql):
 
 if __name__ == "__main__":
     changelist = getdata(query2)
-    mchangelist = [x for x in changelist if x[2] < 0]
-    print mchangelist[0:2]
+    
+    mchangelist = [x for x in changelist if x[2] > 0]
+    logging.info("data count = %i",len(mchangelist) )
+    time.sleep(2)
+    
     ylist = getdata(query3)
     dc = {}
     for r in mchangelist:
@@ -39,7 +42,7 @@ if __name__ == "__main__":
     for r in ylist:
         if dc.has_key(r[0]):
             y = float(r[2])
-            x = abs(float(dc[r[0]][2]))
+            x = float(dc[r[0]][2])
             p = x / y * 100 if y != 0 else 0
             dc[r[0]].append(r[2])
             dc[r[0]].append(p)
@@ -48,7 +51,7 @@ if __name__ == "__main__":
             return 1
         else:
             return -1
-    li =sorted(dc.values(),cmp=compare1)[0:20]
+    li =sorted(dc.values(),cmp=compare1)
     logging.info("=======================")
     for l in li:
         logging.info("%s,%s,%s,%s,%s", l[0],l[1],l[2],l[3],round(l[4],2))
